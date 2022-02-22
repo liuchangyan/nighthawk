@@ -7,13 +7,17 @@ HDR_HISTOGRAM_C_VERSION = "0.11.2"  # October 12th, 2020
 HDR_HISTOGRAM_C_SHA = "637f28b5f64de2e268131e4e34e6eef0b91cf5ff99167db447d9b2825eae6bad"
 
 def nighthawk_dependencies():
-    http_archive(
-        name = "envoy",
-        sha256 = ENVOY_SHA,
-        strip_prefix = "envoy-%s" % ENVOY_COMMIT,
+#    http_archive(
+#        name = "envoy",
+#        sha256 = ENVOY_SHA,
+#        strip_prefix = "envoy-%s" % ENVOY_COMMIT,
         # // clang-format off: Envoy's format check: Only repository_locations.bzl may contains URL references
-        url = "https://github.com/envoyproxy/envoy/archive/%s.tar.gz" % ENVOY_COMMIT,
+#        url = "https://github.com/envoyproxy/envoy/archive/%s.tar.gz" % ENVOY_COMMIT,
         # // clang-format on
+#    )
+    native.local_repository(
+        name = "envoy",
+        path = "envoy",
     )
     http_archive(
         name = "dep_hdrhistogram_c",
